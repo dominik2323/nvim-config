@@ -2,6 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     build = "cbargo build --release",
+    version = "1.*",
     opts = {
       signature = {
         enabled = true,
@@ -20,7 +21,6 @@ return {
           "sort_text",
         },
       },
-      version = "1.*",
       sources = {
         default = { "snippets", "lsp", "buffer", "path" },
       },
