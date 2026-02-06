@@ -110,8 +110,10 @@ return {
         },
       })
 
+      local lsp_utils = require("utils.lsp")
+
       vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
-      vim.keymap.set("n", "gd", vim.lsp.buf.definition, { remap = true })
+      vim.keymap.set("n", "gd", lsp_utils.goto_definition, {})
       vim.keymap.set("n", "gi", vim.lsp.buf.implementation, {})
       vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
       vim.keymap.set("n", "<leader>w", function()
