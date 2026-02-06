@@ -2,7 +2,9 @@ local M = {}
 
 -- Jump to definition, filtering out import statements in the current file
 function M.goto_definition()
-	local params = vim.lsp.util.make_position_params()
+	local client = vim.lsp.get_clients({ bufnr = 0 })[1]
+	local offset_encoding = client and client.offset_encoding or "utf-16"
+	local params = vim.lsp.util.make_position_params(0, offset_encoding)
 	vim.lsp.buf_request(0, "textDocument/definition", params, function(err, result, ctx, config)
 		if err or not result or vim.tbl_isempty(result) then
 			return
@@ -15,7 +17,7 @@ function M.goto_definition()
 
 		-- If single result, jump directly
 		if #result == 1 then
-			vim.lsp.util.jump_to_location(result[1], "utf-8")
+			vim.lsp.util.show_document(result[1], "utf-8")
 			return
 		end
 
@@ -32,7 +34,7 @@ function M.goto_definition()
 		local final_results = #external_results > 0 and external_results or result
 
 		-- Jump to first result
-		vim.lsp.util.jump_to_location(final_results[1], "utf-8")
+		vim.lsp.util.show_document(final_results[1], "utf-8")
 	end)
 end
 
