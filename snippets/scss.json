@@ -1,0 +1,18 @@
+{
+  "include": {
+    "prefix": "in",
+    "body": ["@include ${1}"]
+  },
+  "space": {
+    "prefix": "sp",
+    "body": ["var(--space-${1})"]
+  },
+  "variable": {
+    "prefix": "v",
+    "body": ["var(--${1})"]
+  },
+  "import": {
+    "prefix": "use",
+    "body": ["@use \"@/styles/${1}.scss\" as *;"]
+  }
+}

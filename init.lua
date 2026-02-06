@@ -1,0 +1,5 @@
+require("keymaps")
+require("options")
+require("highlights")
+require("config.lazy")
+require("commands")
